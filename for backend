@@ -1,0 +1,19 @@
+Server.js this is main file for backend it loads env variables it connects to mongoDB it sets middleware it start express server
+
+
+first we make date base in atlas then download all dependecies like bcrypt express mongoose cors then we create .env file in it we give the url/link of atlas after that we go to  configs and in configs we create a file named db.js
+then we create models folder in that we create file User.js It prepares authentication system it adds password comparision and stores user in mongodb.
+After that we create controllers folder in that we make userContoller.js as file in that we do user registration and login with JWT token generation .
+ After that we create middleware folder in that  we create authmiddleware.js file which is used to protect route It check whether the request has valid token or not if it has then allow access if not then block access.
+After that we create routes in that we UserRoute.js file is created in which user related routes are present that connects url with controller and adds protection middleware.
+After that in model folder we create Resume.js this creates resume model in mongodb it defines resume structure and user relationships.
+Again in controller we create resumeController.js this file contains all resume-related backend controllers It handles: Create resume Delete resume, Get resume (private), Get resume (public), Update resume
+Again in routes folder create resumeRoutes.js this file connects frontend requests to backend controller functions 
+
+
+
+
+
+we are using google gemini api for using ai enhancement in summary and job description for using it we install openai and copy paste open ai compatiblity from documentation of the gemini api and then in .env file we paste OPENAI_BASE_URL, OPENAI_MODEL and OPENAI_API_KEY 
+
+We use db.js to Keep database connection logic separate and organized.
