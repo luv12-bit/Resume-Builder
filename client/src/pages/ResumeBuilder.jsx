@@ -62,29 +62,29 @@ const ResumeBuilder = () => {
 
   const activeSection = sections[activeSectionIndex];
 
-  const loadExistingResume = async () => {
-    try {
-      const { data } = await api.get("/api/resumes/get/" + resumeId, {
-        headers: { Authorization: token },
-      });
-      if (data.resume) {
-        setResumeData({
-          ...data.resume,
-          personal_info: data.resume.personal_info || {},
-          experience: data.resume.experience || [],
-          education: data.resume.education || [],
-          projects: data.resume.projects || [],
-          skills: data.resume.skills || [],
-        });
-        document.title = data.resume.title || "Resume Builder";
-      }
-    } catch {
-      toast.error("Failed to load resume");
-    }
-  };
   useEffect(() => {
+    const loadExistingResume = async () => {
+      try {
+        const { data } = await api.get("/api/resumes/get/" + resumeId, {
+          headers: { Authorization: token },
+        });
+        if (data.resume) {
+          setResumeData({
+            ...data.resume,
+            personal_info: data.resume.personal_info || {},
+            experience: data.resume.experience || [],
+            education: data.resume.education || [],
+            projects: data.resume.projects || [],
+            skills: data.resume.skills || [],
+          });
+          document.title = data.resume.title || "Resume Builder";
+        }
+      } catch {
+        toast.error("Failed to load resume");
+      }
+    };
     loadExistingResume();
-  }, [resumeId]);
+  }, [resumeId, token]);
 
   const changeResumeVisibility = async () => {
     try {

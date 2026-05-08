@@ -30,6 +30,9 @@ const Hero = () => {
             <a href="#cta" className="hover:text-green-600 transition">
               Contact
             </a>
+            <Link to="/app/ats-score" className="hover:text-green-600 transition font-medium text-green-700">
+              ATS Checker
+            </Link>
           </div>
 
           <div className="flex gap-2">

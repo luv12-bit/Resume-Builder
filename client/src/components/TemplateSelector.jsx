@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Layout, Check } from "lucide-react"; // Added Check import
+import { Layout, Check } from "lucide-react"; 
 
 const TemplateSelector = ({ selectedTemplate, onChange }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -25,6 +25,21 @@ const TemplateSelector = ({ selectedTemplate, onChange }) => {
       name: "Minimal Image",
       preview: "Minimal design with a single image and clean typography",
     },
+    {
+      id: "professional",
+      name: "Elite Professional",
+      preview: "Sophisticated banner-style layout with a modern two-column body (Screenshot 2)",
+    },
+    {
+      id: "creative",
+      name: "Modern Sidebar",
+      preview: "Sleek dark-contrast sidebar layout with a circular profile picture (Screenshot 1)",
+    },
+    {
+      id: "executive",
+      name: "Pure ATS",
+      preview: "Industry-standard single-column academic layout optimized for bot parsing (Screenshot 3)",
+    },
   ];
 
   return (
@@ -38,7 +53,7 @@ const TemplateSelector = ({ selectedTemplate, onChange }) => {
       </button>
       
       {isOpen && (
-        <div className="absolute top-full left-0 w-80 p-3 mt-2 space-y-3 z-10 bg-white rounded-md border border-gray-200 shadow-sm ">
+        <div className="absolute top-full left-0 w-80 p-3 mt-2 space-y-3 z-10 bg-white rounded-md border border-gray-200 shadow-sm overflow-y-auto max-h-[400px] custom-scrollbar">
           {templates.map((template) => (
             <div
               key={template.id}

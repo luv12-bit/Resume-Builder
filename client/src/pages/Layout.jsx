@@ -10,7 +10,7 @@ const Layout = () => {
   const { pathname } = useLocation();
 
   // Hide the global Navbar on the ResumeBuilder page
-  const hideNavbar = pathname.startsWith("/app/resume");
+  const hideNavbar = pathname.includes("/app/builder");
 
   if (loading) {
     return <Loader />;
@@ -20,7 +20,7 @@ const Layout = () => {
     <div>
       {user ? (
         <div className="min-h-screen bg-gray-50">
-          <Navbar />
+          {!hideNavbar && <Navbar />}
           <Outlet />
         </div>
       ) : (

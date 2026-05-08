@@ -17,8 +17,10 @@ const Navbar = () => {
             <Link to='/'>
                 <img src="/logo.svg" alt="logo" className='h-11 w-auto' />
             </Link>
-            <div className='flex items-center gap-4 text-sm'>
-                <p className='max-sm:hidden'>Hi, {user?.name}</p>
+            <div className='flex items-center gap-6 text-sm font-medium'>
+                <Link to='/app' className='hover:text-indigo-600 transition-colors'>Dashboard</Link>
+                <Link to='/app/ats-score' className='hover:text-indigo-600 transition-colors'>ATS Checker</Link>
+                <p className='max-sm:hidden text-slate-500'>Hi, {user?.name}</p>
                 <button onClick={logoutUser} className='bg-white hover:bg-slate-50 border border-gray-300 px-7 py-1.5 rounded-full active:scale-95 transition-all'>Logout</button>
             </div>
         </nav>

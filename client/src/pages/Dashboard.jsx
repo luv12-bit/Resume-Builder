@@ -4,6 +4,7 @@ import {
   LoaderCircle,
   Pencil,
   Plus,
+  Sparkles,
   Trash,
   UploadCloud,
   X,
@@ -15,7 +16,7 @@ import api from "../configs/api";
 import toast from "react-hot-toast";
 import pdfToText from "react-pdftotext";
 const Dashboard = () => {
-  const { user, token } = useSelector((state) => state.auth);
+  const { token } = useSelector((state) => state.auth);
   const colors = ["#9333ea", "#d97706", "#dc2626", "#0284c7", "#16a34a"];
   const [allResumes, setAllResumes] = useState([]);
   const [showCreateResume, setShowCreateResume] = useState(false);
@@ -25,16 +26,6 @@ const Dashboard = () => {
   const [editResumeId, setEditResumeId] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
-  const loadAllResumes = async () => {
-    try {
-      const { data } = await api.get("/api/users/resumes", {
-        headers: { Authorization: token },
-      });
-      setAllResumes(data.resumes);
-    } catch (error) {
-      toast.error(error?.response?.data?.message || error.message);
-    }
-  };
   const createResume = async (event) => {
     try {
       event.preventDefault();
@@ -107,8 +98,18 @@ const Dashboard = () => {
     }
   };
   useEffect(() => {
+    const loadAllResumes = async () => {
+      try {
+        const { data } = await api.get("/api/users/resumes", {
+          headers: { Authorization: token },
+        });
+        setAllResumes(data.resumes);
+      } catch (error) {
+        toast.error(error?.response?.data?.message || error.message);
+      }
+    };
     loadAllResumes();
-  }, []);
+  }, [token]);
   return (
     <div>
       <div className="max-w-7xl mx-auto px-4 py-8">
@@ -117,7 +118,7 @@ const Dashboard = () => {
         </p>
 
         {/* ================= ACTION BUTTONS ================= */}
-        <div className="flex gap-4">
+        <div className="flex flex-wrap gap-4">
           {/* Create */}
           <button
             onClick={() => setShowCreateResume(true)}
@@ -137,6 +138,17 @@ const Dashboard = () => {
             <UploadCloud className="size-11 p-2.5 bg-gradient-to-br from-purple-300 to-purple-500 rounded-full text-white transition-all duration-300" />
             <p className="text-sm mt-3 group-hover:text-purple-600 transition-all duration-300">
               Upload Existing
+            </p>
+          </button>
+
+          {/* ATS Checker */}
+          <button
+            onClick={() => navigate("/app/ats-score")}
+            className="w-full bg-white sm:max-w-36 h-48 flex flex-col items-center justify-center border border-slate-300 rounded-lg group hover:border-emerald-500 hover:shadow-lg transition-all duration-300 cursor-pointer"
+          >
+            <Sparkles className="size-11 p-2.5 bg-gradient-to-br from-emerald-300 to-emerald-500 rounded-full text-white transition-all duration-300" />
+            <p className="text-sm mt-3 group-hover:text-emerald-600 transition-all duration-300 text-center px-2">
+              ATS Checker
             </p>
           </button>
         </div>
